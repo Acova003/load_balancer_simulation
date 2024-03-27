@@ -80,6 +80,7 @@ Navigate to your project root and run: `pytest`
 From root directory, `cd tests`
 
 Testing load balancer `pytest test_balancer.py`
+
 Testing provider `pytest test_provider.py`
 
 Note: The tests are still in development
