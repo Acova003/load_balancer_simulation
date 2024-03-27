@@ -53,4 +53,15 @@ sleep(5)  # Adjust the sleep time based on your heartbeat_interval and needed de
 
 print("Current providers (after simulated health checks):", [p.id for p in lb.providers])
 
+print("\n")
+lb = LoadBalancer(max_parallel_requests_per_provider=2)  # Initialize the load balancer
+
+# Simulate handling requests
+for i in range(10):  # Reduce the number of parallel requests to 10
+    if lb.can_accept_request():
+        print(f"Request {i + 1}: Accepted")
+        lb.handle_request()  # Simulate handling a request
+    else:
+        print(f"Request {i + 1}: Rejected due to full capacity")
+
 
