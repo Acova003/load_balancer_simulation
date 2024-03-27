@@ -23,14 +23,15 @@ To run the load balancer simulation, follow these steps:
 Upon running, the program will simulate the registration of providers, selection of providers for handling requests, and the inclusion or exclusion of providers based on heartbeat checks.
 
 These functionalities are broken down into the following steps:
-Step 1: Generate Provider
-Step 2: Register a list of providers
-Step 3: Random invocation
-Step 4: Round Robin invocation
-Step 5: Manual node exclusion / inclusion
-Step 6: Heart beat checker
-Step 7: Improving Heart beat checker
-Step 8: Cluster Capacity Limit
+
+- Step 1: Generate Provider
+- Step 2: Register a list of providers
+- Step 3: Random invocation
+- Step 4: Round Robin invocation
+- Step 5: Manual node exclusion / inclusion
+- Step 6: Heart beat checker
+- Step 7: Improving Heart beat checker
+- Step 8: Cluster Capacity Limit
 
 ## Example Output
 
