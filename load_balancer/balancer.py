@@ -10,7 +10,7 @@ class LoadBalancer:
         self.max_parallel_requests_per_provider = max_parallel_requests_per_provider  # Step 8: Cluster Capacity Limit
         self.current_requests_by_provider = {}  # Tracks active requests per provider
         self.heartbeat_interval = 10  # Step 6: Heartbeat interval in seconds
-        self.providers_seen_count = {}  # Step 7: Tracks health-check passes for each provider
+        self.provider_health_status = {}  # Step 7: Tracks health-check passes for each provider
         self.heartbeat_thread = threading.Thread(target=self.check_providers, daemon=True) # background daemon thread for step 6 heartbeat checker
         self.heartbeat_thread.start()  # Step 6: Starts the heartbeat checking in a separate thread
 
@@ -62,16 +62,16 @@ class LoadBalancer:
     # Step 6 & 7: Heartbeat checker and improvement
     def check_providers(self):
         while True:
-            for provider in list(self.providers_seen_count.keys()):
+            for provider in list(self.provider_health_status.keys()):
                 if provider.check():
-                    if self.providers_seen_count[provider] == 1:
+                    if self.provider_health_status[provider] == 1:
                         self.include_provider(provider)
-                        del self.providers_seen_count[provider] 
+                        del self.provider_health_status[provider] 
                     else:
-                        self.providers_seen_count[provider] = 1 
+                        self.provider_health_status[provider] = 1 
                 else:
                     self.exclude_provider(provider)
-                    self.providers_seen_count[provider] = 0  
+                    self.provider_health_status[provider] = 0  
             sleep(self.heartbeat_interval)
 
 
